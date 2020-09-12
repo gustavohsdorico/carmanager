@@ -1,2 +1,6 @@
 Django>=3.0,<4.0
 psycopg2-binary>=2.8
+djangorestframework==3.10.3
+djangorestframework-jwt
+dj-database-url==0.5.0
+python-decouple==3.1
