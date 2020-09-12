@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'carmanager',
-        'USER': 'fsengine',
-        'PASSWORD': 'fsengine',
+        'USER': 'manager',
+        'PASSWORD': 'admin',
         'HOST': 'db',
         'PORT': 5432,
     }

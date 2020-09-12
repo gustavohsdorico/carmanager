@@ -7,7 +7,7 @@ A plataforma foi desenvolvida utilizando o framework Django, Python e como datab
      Criar um diretório em seu computador com o nome de sua preferência, e executar o comando
      git clone https://github.com/totorodorico/carmanager.git no diretorio criado.
      
-     Após o download da plataforma, É necessário executar o comando "docker-compose up" em seu terminal de comando,
+     Após o download da plataforma, É necessário executar o comando "sudo docker-compose up" em seu terminal de comando,
      no raiz do projeto, path de exemplo: DiretorioCriado/carmanager.
      
      E como acesso padrão a plataforma é disponibilizada na url: http://127.0.0.1:8000/admin/

@@ -5,8 +5,10 @@
       image: postgres
       environment:
         - POSTGRES_DB=carmanager
-        - POSTGRES_USER=fsengine
-        - POSTGRES_PASSWORD=fsengine
+        - POSTGRES_USER=manager
+        - POSTGRES_PASSWORD=admin
+      ports:
+        - "5432:5432"
     web:
       build: .
       command: python manage.py runserver 0.0.0.0:8000

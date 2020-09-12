@@ -16,6 +16,7 @@ class VehiclesInLine(admin.TabularInline):
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone_number', 'email']
     inlines = [VehiclesInLine]
+    search_fields = ['name', 'phone_number', 'email']
 
 
 admin.site.register(Owner, OwnerAdmin)
