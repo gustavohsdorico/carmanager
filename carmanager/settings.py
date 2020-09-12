@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import dj_database_url
-from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'owners',
+    'vehicles',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +76,14 @@ WSGI_APPLICATION = 'carmanager.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=60),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'carmanager',
+        'USER': 'fsengine',
+        'PASSWORD': 'fsengine',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
 }
 
 
