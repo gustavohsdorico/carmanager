@@ -36,3 +36,23 @@ A plataforma foi desenvolvida utilizando o framework Django, Python e como datab
 
      No menu Vehicle, é possível cadastrar os veículos e vinculá-lo a 1 (um) proprietário
      Dados padrões são exigidos, como modelo, tipo do veículo, proprietário, etc.
+
+5 - Operações DRF
+    
+    Listar proprietarios.
+    
+    Rota: owner/
+    Tipo: GET
+    apenas utilizar o token, não necessita argumento.
+    
+    Criar proprietario.
+    
+    Rota: create/owner
+    Tipo: POST
+    Argumentos:
+    {
+        nome:"Gustavo"
+        doc_number: "0000000000"
+    }
+    
+Todas as buscas utilizão apenas o token como requisito.
