@@ -4,18 +4,17 @@
     db:
       image: postgres
       environment:
-        - POSTGRES_DB=web
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=carmanager
+        - POSTGRES_USER=manager
+        - POSTGRES_PASSWORD=admin
       ports:
         - "5432:5432"
     web:
       build: .
       command:
-        sh -c "python /code/manage.py makemigrations &&
-        python /code/manage.py migrate auth &&
-        python /code/manage.py migrate --run-syncdb &&
-        python /code/manage.py runserver 0.0.0.0:8000"
+        sh -c "python manage.py makemigrations &&
+                python manage.py migrate &&
+                python manage.py runserver 0.0.0.0:8000"
       volumes:
         - .:/code
       ports:
@@ -24,6 +23,6 @@
         - db
       environment:
         - DB_HOST=db
-        - DB_NAME=web
-        - DB_USER=postgres
-        - DB_PASSWORD=postgres
+        - DB_NAME=carmanager
+        - DB_USER=manager
+        - DB_PASSWORD=admin
