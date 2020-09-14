@@ -5,7 +5,7 @@ from owners.models import Owner
 class OwnerCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Owner
-        fields = ['name', 'phone_number', 'email']
+        fields = ['name', 'phone_number', 'email', 'doc_number']
 
 
 class OwnerSerializer(serializers.ModelSerializer):

@@ -2,7 +2,7 @@ Car Manager - Gerenciador.
 
 A plataforma foi desenvolvida utilizando o framework Django, Python e como database PostgreSQL.
 
-1 - Para o funcionamento da plataforma:
+###Para o funcionamento da plataforma:
  
      Criar um diretório em seu computador com o nome de sua preferência, e executar o comando
      git clone https://github.com/totorodorico/carmanager.git no diretorio criado.
@@ -10,21 +10,10 @@ A plataforma foi desenvolvida utilizando o framework Django, Python e como datab
      Após o download da plataforma, É necessário executar o comando "sudo docker-compose up --build -d" em seu terminal de comando,
      no raiz do projeto, path de exemplo: DiretorioCriado/carmanager.
      
-     Em seguida, executar o comando, "docker-compose run web python manage.py createsuperuser" e cadastra um usuario de acesso.
+     Em seguida, executar o comando, "docker-compose run web python manage.py createsuperuser" e cadastrar um usuario de acesso.
 
-2 - Criação do Token para poder executar a funções desejadas.
-    
-    utilizar a rota auth/ utilizando o metodo POST.
-    e utilizando como argumento o seguinte JSON:
-    
-    {
-        "username": "usuario criado"
-        "password": "senha criada"
-    }
-    
-    E como retorno um "token" é gerado, que será necessarios nas demais operações
-
-3 - Para o cadastro de proprietários e gerenciamento.:
+###Django Admin
+1 - Para o cadastro de proprietários e gerenciamento.:
 
      Ao acessar a plataforma, é possível cadastrar os proprietários no menu Owner.
      Dados padrões são exigidos, como nome, celular, documento, etc.
@@ -32,27 +21,91 @@ A plataforma foi desenvolvida utilizando o framework Django, Python e como datab
      A plataforma também possibilita o cadastro dos veículos na mesma tela, assim já vinculando veículo, proprietário.
      Mas se preferir é possível fazer o cadastro do veículo no menu Vehicle na home da plataforma.
 
-4 - Cadastro de veículos:
+2 - Cadastro de veículos:
 
      No menu Vehicle, é possível cadastrar os veículos e vinculá-lo a 1 (um) proprietário
      Dados padrões são exigidos, como modelo, tipo do veículo, proprietário, etc.
 
-5 - Operações DRF
+
+###Django REST Framework
     
-    Listar proprietarios.
+1 - Aulocalhosttenticação/Token:
     
-    Rota: owner/
-    Tipo: GET
-    apenas utilizar o token, não necessita argumento.
+    URL: http://localhost:8000/auth
     
-    Criar proprietario.
+    Passar como parametro usuario e senha criados no inicio do processo.
     
-    Rota: create/owner
-    Tipo: POST
-    Argumentos:
+    Retono:
+    
     {
-        nome:"Gustavo"
-        doc_number: "0000000000"
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUz...
     }
     
-Todas as buscas utilizão apenas o token como requisito.
+2 - Criar proprietario:
+    
+    É necessario criar o token anteriormente para executar esse metodo.
+    
+    URL: http://localhost:8000/create/owner/
+
+    Parametros Exemplo:
+    
+    {
+        "name": "Gustavo",
+        "phone_number": "11992901060",
+        "email": "teste@teste.com.br",
+        "doc_number": "36290644856"
+    }
+    
+    Retorno:
+    
+    {
+        "status_code": 200,
+        "message": "Successfully created",
+        "result": {
+            "name": "Gustavo",
+            "phone_number": "11992901060",
+            "email": "teste@teste.com.br",
+            "doc_number": "36290644856",
+            "user": 1
+        }
+    }
+    
+3 - Buscar proprietario especifico:
+    
+    É necessario criar o token anteriormente para executar esse metodo.
+    
+    Esse metodo é executado utilizando apenas a URL
+    
+    URL: http://localhost:8000/search/owner/(doc_number do proprietario)
+    
+    Exemplo: http://localhost:8000/search/owner/36290644856
+    
+    Retorno:
+    [
+        {
+            "name": "Gustavo",
+            "phone_number": "11992901060",
+            "email": "teste@teste.com.br",
+            "doc_number": "36290644856"
+        }
+    ]
+
+4 - Listar todos os proprietarios cadastrados pelo usuario:
+
+    É necessario criar o token anteriormente para executar esse metodo.
+    
+    Esse metodo é executado utilizando apenas a URL:
+    
+    URL: http://localhost:8000/owner/
+    
+    Retorno:
+    [
+        {
+            "name": "Gustavo",
+            "phone_number": "11992901060",
+            "email": "teste@teste.com.br",
+            "doc_number": "36290644856"
+        }
+    ]
+    
+    

@@ -1,6 +1,17 @@
-from django.urls import path
-from django.conf.urls import include
+from django.conf.urls import url
+from rest_framework_jwt.views import obtain_jwt_token
+from .viewsets import OwnerViewSet, OwnerCreateViewSet, OwnerSearchViewSet
 
-from rest_framework import routers
 
-from . import viewsets
+urlpatterns = [
+    url(r'^auth/', obtain_jwt_token),
+
+    ##Owner
+    #Listar
+    url(r'^owner/', OwnerViewSet.as_view({'get': 'list'})),
+    #Criar
+    url(r'^create/owner/', OwnerCreateViewSet.as_view({'post': 'create'})),
+    #Buscar por nome
+    url(r'^search/owner/(?P<doc>\w+)$', OwnerSearchViewSet.as_view({'get': 'list'})),
+]
+
